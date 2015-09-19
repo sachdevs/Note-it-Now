@@ -3,8 +3,8 @@ from PIL import Image
 beginning and end are keypoints and imagePath is the name/path of the image
 For easy processing of sidebar
 """
-marginSize = 200
 def getMarkupTab(imagePath):
+    marginSize = 200
     image = imagePath
     original = Image.open(image)
     width,height = original.size
@@ -15,10 +15,13 @@ def getMarkupTab(imagePath):
         r,g,b = rgb.getpixel((x,0))
         if (g < 160):
             marginSize = x
+    if width< marginSize:
+        marginSize = width
     print marginSize
     right = marginSize
     bottom = height
     cropped_example = original.crop((left,top, right, bottom))
     cropped_example.save(imagePath+".sidebar.jpg")
     cropped_example.show()
+    return imagePath+".sidebar.jpg"
 # getMarkupTab("landscapebinder.png")
