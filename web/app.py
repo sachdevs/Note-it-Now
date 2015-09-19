@@ -57,6 +57,9 @@ def index():
         accessToken = userData.json().get('access_token')
         session['access_token'] = accessToken
     return render_template('index.html')
+@app.route('/note')
+def serveNote():
+    return render_template('noteview.html')
 
 @app.route('/main')
 def mainView():
