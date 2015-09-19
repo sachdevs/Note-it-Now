@@ -1,1 +1,51 @@
-<h1>lols</h1>
+<head>
+    <title>pH</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<div class="nav-side-menu">
+    <div class="brand">pH</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            <li>
+                <a href="#">
+                    <i class="fa fa-dashboard fa-lg"></i> My Notebooks
+                </a>
+            </li>
+            <li data-toggle="collapse" data-target="#products" class="collapsed">
+                <a href="#"><i class="fa fa-gift fa-lg"></i>Filters<span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="products">
+                <li><a href="#">General</a></li>
+                <li><a href="#">Examples</a></li>
+                <li><a href="#">Definition</a></li>
+            </ul>
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <li>New Service 1</li>
+                <li>New Service 2</li>
+                <li>New Service 3</li>
+            </ul>
+            <li data-toggle="collapse" data-target="#new" class="collapsed">
+                <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="new">
+                <li>New New 1</li>
+                <li>New New 2</li>
+                <li>New New 3</li>
+            </ul>
+            <li>
+                <a href="#">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
