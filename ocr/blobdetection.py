@@ -35,29 +35,32 @@ def getPointyFilter():
 def getCircleFilter():
     return getFilter(90, 200, 0.7, 1.0, 0.9, 1)
 
-def detectWithFilter(filter):
-    im = cv2.imread("blob.jpg", cv2.IMREAD_GRAYSCALE)
+def detectWithFilter(imagePath,filter):
+    im = cv2.imread(imagePath, cv2.IMREAD_GRAYSCALE)
     detector = cv2.SimpleBlobDetector(filter)
     keypoints = detector.detect(im)
     print (keypoints)
     im_with_keypoints = cv2.drawKeypoints(im, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
-    cv2.imshow("Keypoints", im_with_keypoints)
-    cv2.waitKey(0)
+    return keypoints
+    # cv2.imshow("Keypoints", im_with_keypoints)
+    # cv2.waitKey(0)
 
 class PointTypes:
-    POINTY, TRIANGLE, SQUARE = range(3)
+    POINTY, TRIANGLE, CIRCLE = range(3)
 
 class Landmark:
     def __init__(self, KeyPoint, type):
         self.point = KeyPoint
         self.type = type
 
-def getLandmarks():
+def getLandmarks(imagePath):
     landmarks = []
-    for x in detectWithFilter(getPointyFilter()):
-        landmarks.append(x, POINTY)
-    for x in detectWithFilter(getTriangleFilter()):
-        landmarks.append(x, TRIANGLE)
-    for x in detectWithFilter(getCircleFilter()):
-        landmarks.append(x, CIRCLE)
+    for x in detectWithFilter(imagePath, getPointyFilter()):
+        landmarks.append(Landmark(x, PointTypes.POINTY))
+    for x in detectWithFilter(imagePath, getTriangleFilter()):
+        landmarks.append(Landmark(x, PointTypes.TRIANGLE))
+    for x in detectWithFilter(imagePath, getCircleFilter()):
+        landmarks.append(Landmark(x, PointTypes.CIRCLE))
     return landmarks
+
+# l = getLandmarks("blob.jpg")
