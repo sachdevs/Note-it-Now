@@ -8,9 +8,11 @@ def getSection(beginning, end, imagePath):
     image = imagePath
     original = Image.open(image)
     width,height = original.size
-    # left = beginning.pt[0]
     left = 0
-    top = beginning.pt[1]
+    if beginning.pt[1]-beginning.size < 0 :
+        top = beginning.pt[1]
+    else:
+        top = beginning.pt[1]-beginning.size
     right = width
     bottom = end.pt[1]
     cropped_example = original.crop((int(left),int(top), int(right), int(bottom)))
