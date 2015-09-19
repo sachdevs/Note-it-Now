@@ -3,7 +3,7 @@ import numpy as np
 import math
 # Read image
 im = cv2.imread("blob.jpg", cv2.IMREAD_GRAYSCALE)
-def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCircularity = 1, minConvexity = 0, maxConvexity = 0.95 ):
+def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCircularity = 1, minConvexity = 0, maxConvexity = 0.95):
     params = cv2.SimpleBlobDetector_Params()
 
     params.filterByArea = True
@@ -31,15 +31,14 @@ def getTriangleFilter():
     return getFilter(90, 200, 0.0, 0.6, 0, 0.95)
 
 def getSquareFilter():
-    return getFilter(90, 200, 0.6, 0.8, 0, 0.95 )
+    return getFilter(90, 200, 0.6, 0.8, 0, 0.95)
 
 def getCircleFilter():
     return getFilter(90, 200, 0.6, 1.0, 0.5, 0.95)
 
 
 while True:
-    # Create a detector with the parameters
-    params = getCircleFilter()
+    params = getSquareFilter()
     detector = cv2.SimpleBlobDetector(params)
 
     keypoints = detector.detect(im)
