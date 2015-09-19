@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import math
 # Read image
-im = cv2.imread("blob.jpg", cv2.IMREAD_GRAYSCALE)
 def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCircularity = 1, minConvexity = 0, maxConvexity = 0.95, minInertiaRatio = 0.5):
     params = cv2.SimpleBlobDetector_Params()
 
@@ -27,7 +26,6 @@ def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCirc
     params.minInertiaRatio = minInertiaRatio
     return params
 
-
 def getTriangleFilter():
     return getFilter(90, 200, 0.4, 0.7, .91, 1)
 
@@ -38,6 +36,7 @@ def getCircleFilter():
     return getFilter(90, 200, 0.7, 1.0, 0.9, 1)
 
 def detectWithFilter(filter):
+    im = cv2.imread("blob.jpg", cv2.IMREAD_GRAYSCALE)
     detector = cv2.SimpleBlobDetector(filter)
     keypoints = detector.detect(im)
     print (keypoints)
@@ -45,8 +44,20 @@ def detectWithFilter(filter):
     cv2.imshow("Keypoints", im_with_keypoints)
     cv2.waitKey(0)
 
-while True:
-    detectWithFilter(getPointyFilter())
-    detectWithFilter(getTriangleFilter())
-    detectWithFilter(getCircleFilter())
+class PointTypes:
+    POINTY, TRIANGLE, SQUARE = range(3)
 
+class Landmark:
+    def __init__(self, KeyPoint, type):
+        self.point = KeyPoint
+        self.type = type
+
+def getLandmarks():
+    landmarks = []
+    for x in detectWithFilter(getPointyFilter()):
+        landmarks.append(x, POINTY)
+    for x in detectWithFilter(getTriangleFilter()):
+        landmarks.append(x, TRIANGLE)
+    for x in detectWithFilter(getCircleFilter()):
+        landmarks.append(x, CIRCLE)
+    return landmarks
