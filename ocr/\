@@ -35,7 +35,7 @@ def getSquareFilter():
     return getFilter(100, 200, 0, 0.4, 0, 0.65, 0.3)
 
 def getCircleFilter():
-    return getFilter(90, 200, 0.7, 1.0, 0, 1)
+    return getFilter(100, 200, 0.9, 1.0, 0.5, 0.95)
 
 
 while True:
