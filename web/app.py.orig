@@ -37,9 +37,12 @@ def dropbox_auth_finish(web_app_session, request):
         logger.log("Auth error: %s" % (e,))
         http_status(403)
 
+<<<<<<< HEAD
 # code = raw_input("Enter the authorization code here: ").strip()
 #
 # access_token, user_id = flow.finish(code)
+=======
+>>>>>>> 3ee8f618538ca06e2fd29e79d2ed49b512420e1a
 # client = dropbox.client.DropboxClient(access_token)
 
 @app.route('/')
