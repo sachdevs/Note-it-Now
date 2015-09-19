@@ -37,11 +37,7 @@ def dropbox_auth_finish(web_app_session, request):
         logger.log("Auth error: %s" % (e,))
         http_status(403)
 
-# code = raw_input("Enter the authorization code here: ").strip()
-# 
-# access_token, user_id = flow.finish(code)
 # client = dropbox.client.DropboxClient(access_token)
-# print 'linked account: ', client.account_info()
 
 @app.route('/')
 def authenticate():
@@ -52,13 +48,19 @@ def index():
     if(request.args.get('code') is not None):
         code = request.args.get('code')
         state = request.args.get('state')
-        print "im in"
         urlToGetToken = "https://api.dropboxapi.com/1/oauth2/token"
         payload = { "code": code, "grant_type": "authorization_code", "client_id": APP_KEY, "client_secret": APP_SECRET, "redirect_uri": REDIRECT_URI}
         userData = requests.post(urlToGetToken, params=payload)
         accessToken = userData.json().get('access_token')
         session['access_token'] = accessToken
     return render_template('index.html')
+
+@app.route('/main')
+def mainView():
+    if("access_token" in session):
+        return render_template('main.html')
+    else:
+        return redirect("/")
 
 if __name__ == "__main__":
     app.secret_key = "A0Zr98j/3yX R~XHH!jmN]LWX/,?RT"
