@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import math
 import pdb
+threshold = 50
 # Read image
 def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCircularity = 1, minConvexity = 0, maxConvexity = 0.95, minInertiaRatio = 0.5):
     params = cv2.SimpleBlobDetector_Params()
@@ -41,9 +42,21 @@ def detectWithFilter(imagePath,filter):
     detector = cv2.SimpleBlobDetector(filter)
     #not sure why the first sucks
     keypoints = detector.detect(im)[1:]
+    keypoints = filterCloseEntries(keypoints)
     im_with_keypoints = cv2.drawKeypoints(im, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
     cv2.imshow("Keypoints", im_with_keypoints)
     return keypoints
+
+def filterCloseEntries(keypoints):
+    pointsArray = []
+    for x in range(0,len(keypoints)):
+        flag = 0
+        for y in range(0,len(pointsArray)):
+            if (abs(keypoints[x].pt[1]-pointsArray[y].pt[1]) < threshold):
+                print("not adding entry")
+                flag = 1
+        pointsArray.append(keypoints[x])
+    return pointsArray
 
 class PointTypes:
     POINTY, TRIANGLE, CIRCLE = range(3)

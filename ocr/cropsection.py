@@ -14,7 +14,6 @@ def getSection(beginning, end, imagePath):
     right = width
     bottom = end.pt[1]
     cropped_example = original.crop((int(left),int(top), int(right), int(bottom)))
-    pdb.set_trace()
     cropped_example.save(imagePath+".edited.png")
     cropped_example.show()
     return imagePath + ".edited.png"
