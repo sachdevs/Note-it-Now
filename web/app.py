@@ -38,6 +38,9 @@ def dropbox_auth_finish(web_app_session, request):
         logger.log("Auth error: %s" % (e,))
         http_status(403)
 
+# code = raw_input("Enter the authorization code here: ").strip()
+#
+# access_token, user_id = flow.finish(code)
 # client = dropbox.client.DropboxClient(access_token)
 
 @app.route('/')
@@ -55,6 +58,9 @@ def index():
         accessToken = userData.json().get('access_token')
         session['access_token'] = accessToken
     return render_template('index.html')
+@app.route('/note')
+def serveNote():
+    return render_template('noteview.html')
 
 @app.route('/main')
 def mainView():

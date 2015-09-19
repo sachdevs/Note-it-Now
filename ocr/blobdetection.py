@@ -29,13 +29,13 @@ def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCirc
 
 
 def getTriangleFilter():
-    return getFilter(90, 200, 0.4, 0.7, 0, 1)
+    return getFilter(90, 200, 0.4, 0.7, .91, 1)
 
 def getPointyFilter():
     return getFilter(90, 200, 0, 0.4, 0, 0.65, 0.3)
 
 def getCircleFilter():
-    return getFilter(90, 200, 0.7, 1.0, 0, 1)
+    return getFilter(90, 200, 0.7, 1.0, 0.9, 1)
 
 def detectWithFilter(filter):
     detector = cv2.SimpleBlobDetector(filter)
