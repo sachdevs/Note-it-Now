@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+import pdb
 # Read image
 def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCircularity = 1, minConvexity = 0, maxConvexity = 0.95, minInertiaRatio = 0.5):
     params = cv2.SimpleBlobDetector_Params()
@@ -38,19 +39,18 @@ def getCircleFilter():
 def detectWithFilter(imagePath,filter):
     im = cv2.imread(imagePath, cv2.IMREAD_GRAYSCALE)
     detector = cv2.SimpleBlobDetector(filter)
-    keypoints = detector.detect(im)
-    print (keypoints)
+    #not sure why the first sucks
+    keypoints = detector.detect(im)[1:]
     im_with_keypoints = cv2.drawKeypoints(im, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+    cv2.imshow("Keypoints", im_with_keypoints)
     return keypoints
-    # cv2.imshow("Keypoints", im_with_keypoints)
-    # cv2.waitKey(0)
 
 class PointTypes:
     POINTY, TRIANGLE, CIRCLE = range(3)
 
 class Landmark:
-    def __init__(self, KeyPoint, type):
-        self.point = KeyPoint
+    def __init__(self, keypoint, type):
+        self.point = keypoint
         self.type = type
 
 def getLandmarks(imagePath):
