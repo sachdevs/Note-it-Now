@@ -5,7 +5,7 @@ import json
 from dropbox.client import DropboxOAuth2Flow, DropboxClient
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 APP_KEY = '82767lp1t5oh8ee'
 APP_SECRET = '41lwxzid1jdlfbq'
