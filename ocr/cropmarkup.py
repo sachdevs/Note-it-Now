@@ -13,7 +13,7 @@ def getMarkupTab(imagePath):
     rgb  =  original.convert('RGB')
     for x in range(0,width/3):
         r,g,b = rgb.getpixel((x,0))
-        if (g < 160):
+        if (g < 145):
             marginSize = x
     if width< marginSize:
         marginSize = width
