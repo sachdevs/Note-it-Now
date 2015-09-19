@@ -1,4 +1,5 @@
 from flask import Flask, session, request, redirect, render_template
+import requests
 import dropbox
 from dropbox.client import DropboxOAuth2Flow, DropboxClient
 
@@ -7,10 +8,10 @@ app = Flask(__name__)
 
 APP_KEY = '82767lp1t5oh8ee'
 APP_SECRET = '41lwxzid1jdlfbq'
+REDIRECT_URI = "http://localhost:5000/authenticated"
 
 def get_dropbox_auth_flow(web_app_session):
-    redirect_uri = "http://localhost:5000/authenticated"
-    return DropboxOAuth2Flow(APP_KEY, APP_SECRET, redirect_uri, web_app_session, "dropbox-auth-csrf-token")
+    return DropboxOAuth2Flow(APP_KEY, APP_SECRET, REDIRECT_URI, web_app_session, "dropbox-auth-csrf-token")
 
 # URL handler for /dropbox-auth-start
 def dropbox_auth_url(web_app_session, request):
@@ -45,8 +46,15 @@ def dropbox_auth_finish(web_app_session, request):
 def authenticate():
 	return redirect(dropbox_auth_url(session, request))
 
-@app.route('/authenticated/')
+@app.route('/authenticated')
 def index():
+	code = request.args.get('code')
+	state = request.args.get('state')
+	print code
+	urlToGetToken = "https://api.dropboxapi.com/1/oauth2/token"
+	payload = { "code": code, "grant_type": "authorization_code", "client_id": APP_KEY, "client_secret": APP_SECRET, "redirect_uri": REDIRECT_URI}
+	userData = requests.post(urlToGetToken, params=payload)
+	print userData
 	return render_template('index.html')
 
 if __name__ == "__main__":

@@ -1,6 +1,21 @@
 <head>
-	<title>pH</title>
+    <title>pH</title>
 </head>
+
 <body>
-	<h2>lol</h2>
+    <h2>lol</h2>
+    <div id="container"></div>
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="82767lp1t5oh8ee"></script>
+    <script type="text/javascript">
+    var options = {
+        success: function(files) {
+            alert("Here's the file link: " + files[0].link)
+        },
+        multiselect: true,
+
+        extensions: ['.jpg', '.png'],
+    };
+    var button = Dropbox.createChooseButton(options);
+    document.getElementById("container").appendChild(button);
+    </script>
 </body>
