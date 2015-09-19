@@ -36,7 +36,7 @@ def dropbox_auth_finish(web_app_session, request):
         http_status(403)
 
 # code = raw_input("Enter the authorization code here: ").strip()
-# 
+#
 # access_token, user_id = flow.finish(code)
 # client = dropbox.client.DropboxClient(access_token)
 # print 'linked account: ', client.account_info()

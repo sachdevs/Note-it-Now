@@ -1,0 +1,19 @@
+.sidebar{
+  background-color:#EEEEEE;
+  width:20%;
+  height:100%;
+  display:inline-block;
+  margin:0px;
+  overflow:scroll;
+}
+.content-pane{
+  width:75%;
+  height:100%;
+  background-color:#FAFAFA;
+  margin:0px;
+  overflow:scroll;
+  display:inline-block;
+}
+ul{
+  list-style:none;
+}
