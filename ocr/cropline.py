@@ -1,11 +1,15 @@
 from PIL import Image
-image = "image.jpg"
-original = Image.open(image)
-original.show()
-width,height = original.size
-left = width/4
-top = height/4
-right = 3*width/4
-bottom = 3*height/4
-cropped_example = original.crop((left,top, right, bottom))
-cropped_example.show()
+"""
+beginning and end are keypoints and imagePath is the name/path of the image
+"""
+def getSections(beginning, end, imagePath):
+    image = imagePath
+    original = Image.open(image)
+    width,height = original.size
+    left = beggining.pt.x
+    top = beggining.pt.y
+    right = width
+    bottom = end.pt.y
+    cropped_example = original.crop((left,top, right, bottom))
+    cropped_example.save(imagePath+".edited")
+    cropped_example.show()
