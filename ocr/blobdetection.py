@@ -29,7 +29,7 @@ def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCirc
 
 
 def getTriangleFilter():
-    return getFilter(90, 200, 0.3, 0.7, 0, 1)
+    return getFilter(90, 200, 0.4, 0.7, 0, 1)
 
 def getPointyFilter():
     return getFilter(90, 200, 0, 0.4, 0, 0.65, 0.3)
