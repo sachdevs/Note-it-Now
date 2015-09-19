@@ -31,19 +31,22 @@ def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCirc
 def getTriangleFilter():
     return getFilter(90, 200, 0.3, 0.7, 0, 1)
 
-def getSquareFilter():
-    return getFilter(100, 200, 0, 0.4, 0, 0.65, 0.3)
+def getPointyFilter():
+    return getFilter(90, 200, 0, 0.4, 0, 0.65, 0.3)
 
 def getCircleFilter():
     return getFilter(90, 200, 0.7, 1.0, 0, 1)
 
-
-while True:
-    params = getTriangleFilter()
-    detector = cv2.SimpleBlobDetector(params)
+def detectWithFilter(filter):
+    detector = cv2.SimpleBlobDetector(filter)
     keypoints = detector.detect(im)
-
     print (keypoints)
     im_with_keypoints = cv2.drawKeypoints(im, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
     cv2.imshow("Keypoints", im_with_keypoints)
     cv2.waitKey(0)
+
+while True:
+    detectWithFilter(getPointyFilter())
+    detectWithFilter(getTriangleFilter())
+    detectWithFilter(getCircleFilter())
+
