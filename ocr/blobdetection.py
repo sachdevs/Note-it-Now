@@ -2,13 +2,13 @@ import cv2
 import numpy as np
 import math
 import pdb
-threshold = 50
+threshold = 300
 # Read image
 def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCircularity = 1, minConvexity = 0, maxConvexity = 0.95, minInertiaRatio = 0.5):
     params = cv2.SimpleBlobDetector_Params()
 
-    params.filterByArea = False
-    params.minArea = 100
+    params.filterByArea = True
+    params.minArea = 200
 
     # Change thresholds
     params.minThreshold = minThreshold
@@ -45,6 +45,7 @@ def detectWithFilter(imagePath,filter):
     keypoints = filterCloseEntries(keypoints)
     im_with_keypoints = cv2.drawKeypoints(im, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
     cv2.imshow("Keypoints", im_with_keypoints)
+    cv2.waitKey(0)
     return keypoints
 
 def filterCloseEntries(keypoints):
