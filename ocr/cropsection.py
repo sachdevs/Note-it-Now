@@ -14,7 +14,10 @@ def getSection(beginning, end, imagePath):
     else:
         top = beginning.pt[1]-beginning.size
     right = width
-    bottom = end.pt[1]
+    if end == 0:
+        bottom = height
+    else:
+        bottom = end.pt[1]
     cropped_example = original.crop((int(left),int(top), int(right), int(bottom)))
     cropped_example.save(imagePath+".edited.png")
     cropped_example.show()

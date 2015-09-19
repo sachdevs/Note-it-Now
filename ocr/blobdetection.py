@@ -3,12 +3,13 @@ import numpy as np
 import math
 import pdb
 threshold = 300
+radiusThreshold = 10
 # Read image
 def getFilter(minThreshold = 90, maxThreshold = 200, minCircularity = 0, maxCircularity = 1, minConvexity = 0, maxConvexity = 0.95, minInertiaRatio = 0.5):
     params = cv2.SimpleBlobDetector_Params()
 
-    params.filterByArea = True
-    params.minArea = 200
+    params.filterByArea = False
+    params.minArea = 250
 
     # Change thresholds
     params.minThreshold = minThreshold
@@ -32,10 +33,10 @@ def getTriangleFilter():
     return getFilter(90, 200, 0.4, 0.7, .91, 1)
 
 def getPointyFilter():
-    return getFilter(90, 200, 0, 0.4, 0, 0.65, 0.3)
+    return getFilter(50, 100, 0, 0.4, 0, 0.65, 0.3)
 
 def getCircleFilter():
-    return getFilter(90, 200, 0.7, 1.0, 0.9, 1)
+    return getFilter(50, 100, 0.6, 1.0, 0.9, 1)
 
 def detectWithFilter(imagePath,filter):
     im = cv2.imread(imagePath, cv2.IMREAD_GRAYSCALE)
@@ -56,7 +57,9 @@ def filterCloseEntries(keypoints):
             if (abs(keypoints[x].pt[1]-pointsArray[y].pt[1]) < threshold):
                 print("not adding entry")
                 flag = 1
-        pointsArray.append(keypoints[x])
+        print keypoints[x].size
+        if keypoints[x].size > radiusThreshold:
+            pointsArray.append(keypoints[x])
     return pointsArray
 
 class PointTypes:
