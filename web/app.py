@@ -1,4 +1,5 @@
 from flask import Flask, session, request, redirect, render_template
+import flask
 import requests
 import dropbox
 import json
@@ -61,6 +62,12 @@ def mainView():
         return render_template('main.html')
     else:
         return redirect("/")
+
+@app.route('/files', methods=['POST'])
+def filesView():
+    if("access_token" in session):
+        #TODO do stuff with image urls
+        return flask.jsonify(**{ "didstuff": True })
 
 if __name__ == "__main__":
     app.secret_key = "A0Zr98j/3yX R~XHH!jmN]LWX/,?RT"
