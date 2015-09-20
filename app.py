@@ -1,4 +1,4 @@
-from flask import Flask, session, request, redirect, render_template
+from flask import Flask, Response, session, request, redirect, render_template
 import flask
 import requests
 # import dropbox
@@ -71,8 +71,6 @@ def mainView():
     return render_template('main.html')
     # else:
         # return redirect("/")
-UPLOAD_FOLDER = '/uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/upload',methods=['POST'])
 def spliceImage():
@@ -81,13 +79,18 @@ def spliceImage():
         tempFileName = tempfile.NamedTemporaryFile().name
         decode64String(tempFileName,data);
         images=segmenter.getImages(tempFileName)
-    return images
+        dat= json.dumps([get64String(x) for x in images])
+        resp = Response(response=dat,
+                            status=200, \
+                            mimetype="application/json")
+        return(resp)
+    return "fail"
 
 
 def decode64String(filename,imagestr):
     with open(filename,"wb") as f:
         f.write(decodestring(imagestr))
-        return filename
+    return filename
 
 def get64String(filename):
     with open(filename, "rb") as image_file:
@@ -101,4 +104,4 @@ def get64String(filename):
 
 if __name__ == "__main__":
     # app.secret_key = "A0Zr98j/3yX R~XHH!jmN]LWX/,?RT"
-    app.run(debug=True,threaded=True)
+    app.run(debug=True)

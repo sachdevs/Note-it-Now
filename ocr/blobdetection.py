@@ -57,7 +57,6 @@ def filterCloseEntries(keypoints):
         flag = 0
         for y in range(0,len(pointsArray)):
             if (abs(keypoints[x].pt[1]-pointsArray[y].pt[1]) < threshold):
-                print("not adding entry")
                 flag = 1
         print keypoints[x].size
         if keypoints[x].size > radiusThreshold:
@@ -71,6 +70,7 @@ class Landmark:
     def __init__(self, keypoint, type):
         self.point = keypoint
         self.type = type
+
 def getLandmarks(imagePath):
     landmarks = []
     for x in detectWithFilter(imagePath, getMark()):
