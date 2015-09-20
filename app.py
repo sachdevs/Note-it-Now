@@ -46,9 +46,10 @@ app = Flask(__name__, static_url_path='/static')
 # access_token, user_id = flow.finish(code)
 # client = dropbox.client.DropboxClient(access_token)
 
-# @app.route('/')
-# def authenticate():
+@app.route('/')
+def authenticate():
     # return redirect(dropbox_auth_url(session, request))
+    return redirect("/main")
 
 # @app.route('/authenticated')
 # def index():
@@ -104,4 +105,4 @@ def get64String(filename):
 
 if __name__ == "__main__":
     # app.secret_key = "A0Zr98j/3yX R~XHH!jmN]LWX/,?RT"
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
