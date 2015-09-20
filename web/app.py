@@ -64,10 +64,10 @@ def serveNote():
 
 @app.route('/main')
 def mainView():
-    if("access_token" in session):
-        return render_template('main.html')
-    else:
-        return redirect("/")
+    # if("access_token" in session):
+    return render_template('main.html')
+    # else:
+        # return redirect("/")
 
 @app.route('/files', methods=['POST'])
 def filesView():
