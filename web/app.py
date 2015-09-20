@@ -5,9 +5,6 @@ import dropbox
 import json
 from dropbox.client import DropboxOAuth2Flow, DropboxClient
 
-var ocr = require('/ocr/blobdetection') // do not include the dot js
-Mod.somefunc(); // you then call it like this
-
 app = Flask(__name__, static_url_path='/static')
 
 APP_KEY = '82767lp1t5oh8ee'
