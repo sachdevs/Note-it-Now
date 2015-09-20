@@ -105,3 +105,10 @@ h1{
   font-size:2em;
   margin:10px;
 }
+.delete-button{
+  color:red;
+  background-color:white;
+  width:20px;
+  height:20px;
+  border-radius:10px;
+}
