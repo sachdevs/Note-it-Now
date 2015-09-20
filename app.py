@@ -79,11 +79,11 @@ def spliceImage():
         tempFileName = tempfile.NamedTemporaryFile().name
         decode64String(tempFileName,data);
         images=segmenter.getImages(tempFileName)
-        # return json.dumps(images)
-        dat = json.dumps([get64String(x) for x in images])
-        resp = Response(response=dat,
-                            status=200, \
-                            mimetype="application/json")
+        return json.dumps(images)
+        # dat = json.dumps([get64String(x) for x in images])
+        # resp = Response(response=dat,
+                            # status=200, \
+                            # mimetype="application/json")
     return "fail"
 
 
