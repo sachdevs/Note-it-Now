@@ -74,6 +74,7 @@ def mainView():
 @app.route('/upload')
 def spliceImage():
     image = requests.form.get('image');
+    print image
 
 @app.route('/files', methods=['POST'])
 def filesView():
