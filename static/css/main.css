@@ -60,10 +60,13 @@ h1{
   font-size:3.5em;
   color:#FFF;
 }
+.fab:hover{
+  background-color:#E57373;
+}
 .popup-hidden{
   position:absolute;
   left:-500px;
-  display:hidden;
+  display:none;
 }
 .popup-create{
   height:30%;

@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  $('.fab').click(function(e){
+    $('.popup-create').toggleClass('popup-hidden');
+  });
   /**
   * Convert an image
   * to a base64 url
