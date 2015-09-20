@@ -5,6 +5,8 @@ import dropbox
 import json
 from dropbox.client import DropboxOAuth2Flow, DropboxClient
 
+var ocr = require('/ocr/blobdetection') // do not include the dot js
+Mod.somefunc(); // you then call it like this
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -68,6 +70,10 @@ def mainView():
     return render_template('main.html')
     # else:
         # return redirect("/")
+
+@app.route('/upload')
+def spliceImage():
+    image = requests.form.get('image');
 
 @app.route('/files', methods=['POST'])
 def filesView():
