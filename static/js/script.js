@@ -16,7 +16,7 @@ $(document).ready(function(){
       console.log(item);
 
       var deleteButton = $("<div/>").addClass("delete-button");
-      deleteButton.text = 'X';
+      $(deleteButton).text('X');
       $(deleteButton).click(function(e){
         deleteCardAtIndex(index);
       });
