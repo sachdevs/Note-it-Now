@@ -47,3 +47,44 @@ h1{
     display: block;
     text-align: center;
 }
+.fab{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  border-radius:37px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  width:75px;
+  height:75px;
+  text-align:center;
+  background-color:#E53935;
+  font-size:3.5em;
+  color:#FFF;
+}
+.popup-hidden{
+  position:absolute;
+  left:-500px;
+  display:hidden;
+}
+.popup-create{
+  height:30%;
+  width:40%;
+  background-color:#EEEEEE;
+  margin:0 auto;
+  position:absolute;
+  top:25%;
+  left:30%;
+}
+.uploadform{
+  width:100%;
+}
+.upload{
+  padding:30px;
+  width:auto;
+  height:100%;
+}
+#submitButton{
+  width:80%;
+  background-color:#FAFAFA;
+  position:relative;
+  top:20px;
+}
