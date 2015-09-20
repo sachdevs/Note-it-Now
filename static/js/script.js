@@ -14,7 +14,7 @@ $(document).ready(function(){
     var $container = $('hi');
     $(elements).each(function(index,item){
       console.log(item);
-      document.getElementById('hi').innerHTML += '<div class="entry"><img class="gen-image" src="'+item+'"/></div>';
+      document.getElementById('hi').innerHTML += '<div class="entry"><input class="entry-field" placeholder="Enter a description" type="text"/><img class="gen-image" src="'+item+'"/></div>';
     });
   }
   var opts = {
