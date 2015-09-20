@@ -91,3 +91,9 @@ h1{
   position:relative;
   top:20px;
 }
+.centered-spinner{
+  text-align:center;
+  margin: 0 auto;
+  top:30%;
+  width:20%;
+}
