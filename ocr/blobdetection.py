@@ -37,6 +37,8 @@ def getPointyFilter():
 
 def getCircleFilter():
     return getFilter(50, 100, 0.6, 1.0, 0.9, 1)
+def getMark():
+    return getFilter(60, 100, 0, 1, 0, 1)
 
 def detectWithFilter(imagePath,filter):
     im = cv2.imread(imagePath, cv2.IMREAD_GRAYSCALE)
@@ -69,15 +71,20 @@ class Landmark:
     def __init__(self, keypoint, type):
         self.point = keypoint
         self.type = type
-
 def getLandmarks(imagePath):
     landmarks = []
-    for x in detectWithFilter(imagePath, getPointyFilter()):
-        landmarks.append(Landmark(x, PointTypes.POINTY))
-    for x in detectWithFilter(imagePath, getTriangleFilter()):
-        landmarks.append(Landmark(x, PointTypes.TRIANGLE))
-    for x in detectWithFilter(imagePath, getCircleFilter()):
+    for x in detectWithFilter(imagePath, getMark()):
         landmarks.append(Landmark(x, PointTypes.CIRCLE))
     return landmarks
+
+# def getLandmarks(imagePath):
+    # landmarks = []
+    # for x in detectWithFilter(imagePath, getPointyFilter()):
+        # landmarks.append(Landmark(x, PointTypes.POINTY))
+    # for x in detectWithFilter(imagePath, getTriangleFilter()):
+        # landmarks.append(Landmark(x, PointTypes.TRIANGLE))
+    # for x in detectWithFilter(imagePath, getCircleFilter()):
+        # landmarks.append(Landmark(x, PointTypes.CIRCLE))
+    # return landmarks
 
 # l = getLandmarks("blob.jpg")
