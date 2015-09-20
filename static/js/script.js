@@ -18,15 +18,15 @@ $(document).ready(function(){
         console.log(b64);
         $.ajax({
           type: "POST",
-          url: 'http://localhost:5000/upload',
+          url: '/upload',
           data: {
             "image":b64
           },
-          success: function(){
-            console.log("sent data");
+          success: function(e){
+            console.log(e);
           },
           error: function(e){
-            console.log("error"+e);
+            console.log("error",e);
           },
           timeout:15000
         });

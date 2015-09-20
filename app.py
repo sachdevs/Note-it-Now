@@ -1,4 +1,4 @@
-from flask import Flask, Response, session, request, redirect, render_template
+from flask import Flask,jsonify, Response, session, request, redirect, render_template
 import flask
 import requests
 # import dropbox
@@ -79,11 +79,11 @@ def spliceImage():
         tempFileName = tempfile.NamedTemporaryFile().name
         decode64String(tempFileName,data);
         images=segmenter.getImages(tempFileName)
-        dat= json.dumps([get64String(x) for x in images])
+        # return json.dumps(images)
+        dat = json.dumps([get64String(x) for x in images])
         resp = Response(response=dat,
                             status=200, \
                             mimetype="application/json")
-        return(resp)
     return "fail"
 
 
