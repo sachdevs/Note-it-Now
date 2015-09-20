@@ -1,6 +1,7 @@
 from PIL import Image
 import pdb
 from cv2 import KeyPoint
+import tempfile
 """
 beginning and end are keypoints and imagePath is the name/path of the image
 """
@@ -20,7 +21,7 @@ def getSection(beginning, end, imagePath):
     else:
         bottom = end.pt[1]+end.size*factor
     cropped_example = original.crop((int(left),int(top), int(right), int(bottom)))
-    cropped_example.save(imagePath+".edited.png")
+    tempFileName = tempfile.NamedTemporaryFile().name + ".jpg"
+    cropped_example.save(tempFileName)
     # cropped_example.show()
-    return imagePath + ".edited.png"
-# getSections(KeyPoint(0, 0, 10),KeyPoint(0, 100,10),"landscapebinder.png")
+    return tempFileName

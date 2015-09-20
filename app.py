@@ -1,15 +1,16 @@
 from flask import Flask, session, request, redirect, render_template
 import flask
 import requests
-import dropbox
+# import dropbox
 import json
 import pdb
 import base64
-from dropbox.client import DropboxOAuth2Flow, DropboxClient
+# from dropbox.client import DropboxOAuth2Flow, DropboxClient
 from base64 import decodestring
+from ocr import *
+import tempfile
 
 app = Flask(__name__, static_url_path='/static')
-
 # APP_KEY = '82767lp1t5oh8ee'
 # APP_SECRET = '41lwxzid1jdlfbq'
 # REDIRECT_URI = "http://localhost:5000/authenticated"
@@ -77,13 +78,13 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def spliceImage():
     if request.method =='POST':
         data = request.form['image']
-        decode64String(data);
+        tempFileName = tempfile.NamedTemporaryFile().name
+        decode64String(tempFileName,data);
+        images=segmenter.getImages(tempFileName)
+    return images
 
-    return "success"
 
-filename = "ocr/blob.png"
-
-def decode64String(imagestr):
+def decode64String(filename,imagestr):
     with open(filename,"wb") as f:
         f.write(decodestring(imagestr))
         return filename

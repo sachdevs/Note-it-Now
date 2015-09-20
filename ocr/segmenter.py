@@ -3,8 +3,8 @@ import blobdetection
 import cropmarkup
 import cropsection
 import pdb
-def getImages():
-    imagePath = "blob.jpg"
+def getImages(filename):
+    imagePath = filename
     sidePath = cropmarkup.getMarkupTab(imagePath)
     landmarks = blobdetection.getLandmarks(sidePath)
     landmarks.sort(key=lambda x: x.point.pt[1])
@@ -15,5 +15,4 @@ def getImages():
             imageArray.append(cropsection.getSection(landmarks[x].point, 0, imagePath))
         else:
             imageArray.append(cropsection.getSection(landmarks[x].point, landmarks[x+1].point, imagePath))
-
     return imageArray
