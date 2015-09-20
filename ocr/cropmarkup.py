@@ -1,5 +1,5 @@
 from PIL import Image
-import tempfile
+import uuid
 """
 beginning and end are keypoints and imagePath is the name/path of the image
 For easy processing of sidebar
@@ -23,7 +23,7 @@ def getMarkupTab(imagePath):
     right = marginSize
     bottom = height
     cropped_example = original.crop((left,top, right, bottom))
-    tempFileName = tempfile.NamedTemporaryFile().name +".jpg"
+    tempFileName = "static/temp/"+str(uuid.uuid4()) +".jpg"
     cropped_example.save(tempFileName)
     # cropped_example.show()
     return tempFileName

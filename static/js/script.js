@@ -6,7 +6,18 @@ $(document).ready(function(){
   * @param  {Function} callback
   * @param  {String}   [outputFormat=image/png]
     */
+  function gen(elements) {
+    elements = JSON.parse(elements);
+    var $container = $('hi');
+    $(elements).each(function(index,item){
+      console.log(item);
+      document.getElementById('hi').innerHTML += '<div class="entry"><img class="gen-image" src="'+item+'"/></div>';
+    });
+  }
 
+  function expand() {
+    console.log('expand box');
+  }
   function uploadPhoto(){
     var b64;
     var file = $("#uploadform")[0].files[0];
@@ -23,7 +34,8 @@ $(document).ready(function(){
             "image":b64
           },
           success: function(e){
-            console.log(e);
+            console.log("success");
+            gen(e);
           },
           error: function(e){
             console.log("error",e);
@@ -35,7 +47,7 @@ $(document).ready(function(){
     }
   }
 
-  $('#uploadbutton').click(function(e){
+  $('#submitButton').click(function(e){
     console.log("got click");
     uploadPhoto();
   });

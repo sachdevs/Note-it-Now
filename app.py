@@ -8,7 +8,7 @@ import base64
 # from dropbox.client import DropboxOAuth2Flow, DropboxClient
 from base64 import decodestring
 from ocr import *
-import tempfile
+import uuid
 
 app = Flask(__name__, static_url_path='/static')
 # APP_KEY = '82767lp1t5oh8ee'
@@ -76,7 +76,7 @@ def mainView():
 def spliceImage():
     if request.method =='POST':
         data = request.form['image']
-        tempFileName = tempfile.NamedTemporaryFile().name
+        tempFileName = "static/temp/"+str(uuid.uuid4())
         decode64String(tempFileName,data);
         images=segmenter.getImages(tempFileName)
         return json.dumps(images)

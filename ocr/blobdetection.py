@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import math
 import pdb
+import uuid
 threshold = 300
 radiusThreshold = 10
 # Read image
@@ -38,7 +39,7 @@ def getPointyFilter():
 def getCircleFilter():
     return getFilter(50, 100, 0.6, 1.0, 0.9, 1)
 def getMark():
-    return getFilter(60, 100, 0, 1, 0, 1)
+    return getFilter(60, 150, 0, 1, 0, 1)
 
 def detectWithFilter(imagePath,filter):
     im = cv2.imread(imagePath, cv2.IMREAD_GRAYSCALE)

@@ -1,7 +1,7 @@
 from PIL import Image
 import pdb
 from cv2 import KeyPoint
-import tempfile
+import uuid
 """
 beginning and end are keypoints and imagePath is the name/path of the image
 """
@@ -21,7 +21,7 @@ def getSection(beginning, end, imagePath):
     else:
         bottom = end.pt[1]+end.size*factor
     cropped_example = original.crop((int(left),int(top), int(right), int(bottom)))
-    tempFileName = tempfile.NamedTemporaryFile().name + ".jpg"
+    tempFileName = "static/temp/"+str(uuid.uuid4())+ ".jpg"
     cropped_example.save(tempFileName)
     # cropped_example.show()
     return tempFileName
