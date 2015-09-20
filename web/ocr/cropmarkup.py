@@ -22,6 +22,5 @@ def getMarkupTab(imagePath):
     bottom = height
     cropped_example = original.crop((left,top, right, bottom))
     cropped_example.save(imagePath+".sidebar.jpg")
-    cropped_example.show()
+    # cropped_example.show()
     return imagePath+".sidebar.jpg"
-# getMarkupTab("landscapebinder.png")

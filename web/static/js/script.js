@@ -6,35 +6,38 @@ $(document).ready(function(){
   * @param  {Function} callback
   * @param  {String}   [outputFormat=image/png]
     */
-  function convertImgToBase64URL(url, callback, outputFormat){
-    var img = new Image();
-    img.crossOrigin = 'Anonymous';
-    img.onload = function(){
-      var canvas = document.createElement('CANVAS'),
-         ctx = canvas.getContext('2d'), dataURL;
-      canvas.height = this.height;
-      canvas.width = this.width;
-      ctx.drawImage(this, 0, 0);
-      dataURL = canvas.toDataURL(outputFormat);
-      callback(dataURL);
-      canvas = null;
-    };
-    img.src = url;
+
+  function uploadPhoto(){
+    var b64;
+    var file = $("#uploadform")[0].files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function(readerEvt) {
+        var binaryString = readerEvt.target.result;
+        b64 = btoa(binaryString);
+        console.log(b64);
+        $.ajax({
+          type: "POST",
+          url: 'http://localhost:5000/upload',
+          data: {
+            "image":b64
+          },
+          success: function(){
+            console.log("sent data");
+          },
+          error: function(e){
+            console.log("error"+e);
+          },
+          timeout:15000
+        });
+      };
+      reader.readAsBinaryString(file);
+    }
   }
 
-  $('#upload').click(function(e){
-    convertImgToBase64URL($('#uploadform'),function(image){
-      $.ajax({
-        type: "POST",
-        url: 'http://localhost:5000/upload',
-        data: {
-          image:image
-        },
-        success: function(){
-          console.log("sent data")
-        }
-      });
-    },"image/jpeg");
+  $('#uploadbutton').click(function(e){
+    console.log("got click");
+    uploadPhoto();
   });
 });
 

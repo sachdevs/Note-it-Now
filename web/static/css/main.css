@@ -1,0 +1,40 @@
+.main {
+    width: 100%;
+    height: 100%;
+    background-color: #656F7A;
+    text-align: center;
+}
+.welcome {
+    padding-top: 20%;
+    font-size: 40px;
+    color: #FFF;
+}
+.upload {
+    background-color: #DDD;
+}
+
+.hello {
+    margin-left:300px;
+    background-color:#656F7A;
+    height:100%;
+    width: auto; 
+    /*width: calc(100% - 300px);*/
+    overflow-x: scroll;
+    /*overflow-y: hidden;*/
+}
+
+.note {
+    background-color: #ddd;
+    border-radius: 5px;
+    margin: 15px 0 15px 15px;
+    width: 28%;
+    padding: 0 15px;
+    min-width: 300px;
+    height: calc(100% - 30px);
+    float: left;
+}
+/*.entry {
+    margin: 15px 0;
+    height: 30%;
+    width: 100%;
+}*/

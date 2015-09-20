@@ -1,13 +1,23 @@
 <head>
     <title>pH</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
-<div class="nav-side-menu" style="position:fixed; z-index:99999;">
+<div class="main">
+    <div class="welcome">Welcome to pH! Get started by uploading images of your notes.</div>
+    <form class="upload" >
+        <input id="uploadform" type="file" multiple class="multi with-preview accept-png|jpg"/>
+        <!-- <input type="file" accept="image/*"/> -->
+        <input id="uploadbutton" type="button" text="Submit">Submit</input>
+    </form>
+</div>
+<!-- <div class="nav-side-menu" style="z-index: 100;">
     <div class="brand">pH</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     <div class="menu-list">
@@ -50,18 +60,18 @@
     </div>
 </div>
 
-<div class="noteView-container container" style="margin-left:270px;background-color:#656F7A;height:100%; padding-left:45px;">
-  <div class="row">
-    <div class="col-md-4" style="background-color:#121212;">
-      TEST 
+<div class="noteView-container hello">
+    <div class="note" style="background-color:#121212;">
     </div>
-    <div class="col-md-4" style="background-color:#FF0000;">
-      PLEASE 
+    <div class="note" style="background-color:#FF0000;">
+      PLEASE
     </div>
-    <div class="col-md-4" style="background-color:#00FF00;">
-      WORK 
+    <div class="note" style="background-color:#00FF00;">
+      WORK
     </div>
-  </div>
+    <div class="note" style="background-color:#ff7;">
+      hello there!
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
@@ -70,3 +80,6 @@
 <script src="{{ url_for('static', filename='js/router.js') }}"></script>
 
 <script src="{{ url_for('static', filename='js/handlebars.js') }}"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript" language="javascript"></script>
+<script src="//github.com/fyneworks/multifile/blob/master/jQuery.MultiFile.min.js" type="text/javascript" language="javascript"></script>

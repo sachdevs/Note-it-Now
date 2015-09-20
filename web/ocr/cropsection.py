@@ -21,6 +21,6 @@ def getSection(beginning, end, imagePath):
         bottom = end.pt[1]+end.size*factor
     cropped_example = original.crop((int(left),int(top), int(right), int(bottom)))
     cropped_example.save(imagePath+".edited.png")
-    cropped_example.show()
+    # cropped_example.show()
     return imagePath + ".edited.png"
 # getSections(KeyPoint(0, 0, 10),KeyPoint(0, 100,10),"landscapebinder.png")
