@@ -23,29 +23,26 @@ function onFiles(files) {
     });
 }
 
-// window.addEventListener("load", function(){
-    function gen() {
-        var elements = [
-            {
-                name: 'picture',
-                tags: ['hi', 'hello']
-            },{
-                name: 'another picture',
-                tags: ['cat', 'dog']
-            },
-        ];
-        var $container = $('hi');
-        $(elements).each(function(index, item){
-            var name = item['name'];
-            var tags = item['tags'].join(', ');
-            console.log(name);
-            console.log(tags);
-            document.getElementById('hi').innerHTML += '<div class="entry"><h1>' + name + '</h1><p>tags: ' + tags + '</p></div>';
-        });
-    }
+function gen() {
+    var elements = [
+        {
+            name: 'picture',
+            tags: ['hi', 'hello']
+        },{
+            name: 'another picture',
+            tags: ['cat', 'dog']
+        },
+    ];
+    var $container = $('hi');
+    $(elements).each(function(index, item){
+        var name = item['name'];
+        var tags = item['tags'].join(', ');
+        console.log(name);
+        console.log(tags);
+        document.getElementById('hi').innerHTML += '<div class="entry"><h1>' + name + '</h1><p>tags: ' + tags + '</p></div>';
+    });
+}
 
-    function expand() {
-        console.log('expand box');
-    }
-// });
-
+function expand() {
+    console.log('expand box');
+}
